@@ -20,7 +20,6 @@ const db = mongoose.connect(process.env.DB, {
 const helmet = require('helmet');
 const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
 
-// Configuração do Helmet com ajuste no CSP
 app.use(helmet({
   hidePoweredBy: {},
   frameguard: {
@@ -39,8 +38,8 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'"], // Permite scripts apenas da mesma origem
-      styleSrc: ["'self'", "'unsafe-inline'"], // Permite estilos inline
+      scriptSrc: ["'self'"], 
+      styleSrc: ["'self'", "'unsafe-inline'"],
     },
   },
 }));
@@ -48,31 +47,26 @@ app.use(helmet({
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
-app.use(cors({origin: '*'})); //For FCC testing purposes only
+app.use(cors({origin: '*'})); 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
-//For FCC testing purposes
 fccTestingRoutes(app);
 
-//Routing for API 
 apiRoutes(app);  
     
-//404 Not Found Middleware
 app.use(function(req, res, next) {
   res.status(404)
     .type('text')
     .send('Not Found');
 });
 
-//Start our server and tests!
 const listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
   if(process.env.NODE_ENV==='test') {
