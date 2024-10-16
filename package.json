@@ -6,22 +6,39 @@
 		"start": "node server.js"
 	},
 	"dependencies": {
-		"body-parser": "^1.15.2",
-		"chai": "^4.2.0",
-		"chai-http": "^4.3.0",
-		"cors": "^2.8.1",
-		"dotenv": "^8.2.0",
-		"express": "^4.14.0",
+		"body-parser": "^1.20.3",
+		"chai": "^4.5.0",
+		"chai-http": "^4.4.0",
+		"cors": "^2.8.5",
+		"dotenv": "^8.6.0",
+		"express": "^4.21.1",
 		"helmet": "^3.1.0",
-		"mocha": "^3.2.0"
+		"ip-anonymize": "^0.1.0",
+		"mocha": "^10.7.3",
+		"mongodb": "^4.17.2",
+		"mongoose": "^6.13.3",
+		"node-fetch": "^3.3.2",
+		"nodemon": "^2.0.22"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/freeCodeCamp/boilerplate-project-stockchecker"
+		"url": "https://github.com/samanthasilva/stock-price-checker.git"
 	},
 	"keywords": [
 		"node",
 		"express"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"main": "assertion-analyser.js",
+	"directories": {
+		"test": "tests"
+	},
+	"devDependencies": {
+		"node": "^15.14.0"
+	},
+	"author": "",
+	"bugs": {
+		"url": "https://github.com/samanthasilva/stock-price-checker/issues"
+	},
+	"homepage": "https://github.com/samanthasilva/stock-price-checker#readme"
 }

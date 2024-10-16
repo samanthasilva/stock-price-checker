@@ -1,28 +1,313 @@
-#userstories {
-  margin-left: 5%;
-  margin-top: 5%;
+/* Importa a fonte Montserrat */
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.p-50 {
-  margin: 50px;
+html {
+    height: 100%;
+    background: #f8f6f6f3;
 }
 
-#testui {
-  margin-left: 5%;
+body {
+    font-family: Montserrat, sans-serif;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
 }
 
-.text-align-left {
+/* Estilização do header */
+header {
+    font-family: Montserrat, sans-serif;
+    background-color: #fff;
+    color: #333;
+    border-bottom: 2px solid #d90f6a;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    text-align: center;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    z-index: 100;
+}
+
+/* Titles */
+h1 {
+    font-size: 20px;
+    font-family: Montserrat, sans-serif;
+    color: #2C3E50;
+    font-weight: normal;
+    margin-bottom: 18px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+h2.fs-title {
+  font-size: 14px;
+  color: #2C3E50;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: montserrat, arial, verdana;
   text-align: left;
+  width: 100%; /* Garante que o elemento ocupe toda a largura disponível */
 }
 
-input[type='text'] {
-  width: 100px;
+/* Estilização do container principal */
+.log-container {
+    background-color: #fff;
+    padding: 30px;
+    max-width: 900px;
+    width: 100%;
+    margin: 80px auto 20px;
+    border-radius: 12px;
+    text-align: left;
 }
 
-.m-50 {
-  margin: 50px;
+/* Estilização das abas */
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
 }
 
-.mt-200 {
-  margin-top: 200px;
+.tabs .tab {
+    flex: 1;
+    text-align: center;
+}
+
+.tabs .tab a {
+    color: rgba(238, 110, 115, 0.7);
+    display: block;
+    padding: 0 24px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    line-height: 48px;
+    height: 48px;
+    margin: 0;
+    text-transform: uppercase;
+    transition: color 0.28s ease, background-color 0.28s ease;
+    text-decoration: none;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+    background-color: transparent;
+    color: #ee0979;
+}
+
+/* Estilo para o conteúdo das abas */
+.tab-content {
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Estilização dos inputs */
+input[type="text"] {
+    padding: 15px;
+    border: 0px solid #ffffff;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 90%;
+    box-sizing: border-box;
+    font-family: Montserrat, sans-serif;
+    color: #2C3E50;
+    font-size: 13px;
+    border-bottom: 1px solid #ee0979;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-bottom: 1px solid #d90f6a;
+}
+
+/* Estilização do checkbox customizado */
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 20px;
+    color: #2C3E50;
+    display: inline-block;
+    font-family: Montserrat, sans-serif;
+}
+
+input[type="checkbox"] + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ee0979;
+    border-radius: 2px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:checked + label::before {
+    background-color: #ee0979;
+    border-color: #ee0979;
+}
+
+input[type="checkbox"]:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 7.5px;
+    top: 40%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    background: transparent;
+    border-radius: 2px;
+}
+
+/* Efeito de foco para o checkbox */
+input[type="checkbox"]:focus + label::before {
+    border-color: #d90f6a;
+}
+
+/* Padronização dos botões */
+button, .action-button {
+  background-color: #ee0979;
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  cursor: pointer;
+  font-weight: normal;
+  border-radius: 25px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  font-size: 11px;
+}
+
+button:hover, .action-button:hover {
+    background-color: #d90f6a;
+}
+
+
+/* Ajuste para alinhar o botão à direita abaixo do input */
+form {
+  flex-direction: column;
+  align-items: flex-end; /* Alinha os itens à direita */
+}
+
+form .action-button {
+  display: block;
+  margin-left: auto;
+  margin-right: 78px;
+}
+
+/* Estilo para a linha tracejada */
+.dotted-line {
+    border: none;
+    border-top: 1px dotted #ee0979;
+    margin: 10px 0;
+}
+
+/* Estilização dos resultados */
+ul#resultadoJson {
+  list-style: none;
+  padding: 0;
+}
+
+ul#resultadoJson li {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+}
+
+ul#resultadoJson li h3 {
+  margin-right: 15px;
+  font-weight: bold;
+  color: #ee0979;
+}
+
+ul#resultadoJson li p {
+  margin: 0 5px;
+}
+/* Estilo do footer */
+footer {
+  font-family: montserrat, arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  border-top: 2px solid #d90f6a;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); 
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  position: fixed;
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  z-index: 10;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 100; 
+  list-style-type: none;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.cute-footer p {
+  margin: 5px 0;
+}
+
+.cute-footer a {
+  color: #d90f6a;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cute-footer .heart-link {
+  color: #d90f6a; 
+  font-size: 18px;
+  text-decoration: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.cute-footer .heart-link:hover {
+  transform: scale(1.2); 
 }

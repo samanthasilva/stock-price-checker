@@ -10,6 +10,42 @@ const runner            = require('./test-runner');
 
 const app = express();
 
+const mongoose = require('mongoose');
+const db = mongoose.connect(process.env.DB, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+
+
+const helmet = require('helmet');
+const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
+
+// Configuração do Helmet com ajuste no CSP
+app.use(helmet({
+  hidePoweredBy: {},
+  frameguard: {
+    action: "deny"
+  },
+  xssFilter: {
+    setOnOldIE: true
+  },
+  hsts: {
+    maxAge: ninetyDaysInSeconds,
+    preload: true,
+  },
+  dnsPrefetchControl: {
+    allow: false,
+  },
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"], // Permite scripts apenas da mesma origem
+      styleSrc: ["'self'", "'unsafe-inline'"], // Permite estilos inline
+    },
+  },
+}));
+
+
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only

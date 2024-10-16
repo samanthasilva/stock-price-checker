@@ -1,60 +1,62 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Stock Price Checker</title>
-    <link
-      id="favicon"
-      rel="icon"
-      href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png"
-      type="image/x-icon"
-    />
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./public/style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>ISQA_5 - Nasdaq Stock Price Checker</h1>
-    </header>
-    <div id="userstories">
-      <h3>Example usage:</h3>
-      <code>/api/stock-prices?stock=GOOG</code>
-      <br />
-      <code>/api/stock-prices?stock=GOOG&amp;like=true</code>
-      <br />
-      <code>/api/stock-prices?stock=GOOG&amp;stock=MSFT</code>
-      <br />
-      <code>/api/stock-prices?stock=GOOG&amp;stock=MSFT&amp;like=true</code>
-      <br />
-      <h3>Example return:</h3>
-      <code>{"stockData":{"stock":"GOOG","price":786.90,"likes":1}}</code>
-      <br />
-      <code>
-        {"stockData":[{"stock":"MSFT","price":62.30,"rel_likes":-1},{"stock":"GOOG","price":786.90,"rel_likes":1}]}
-      </code>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Verificador de Preço de Ações</title>
+  <link rel="icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./public/style.css">
+</head>
+<body>
+  <header>
+    <h1>Consulta de Preços na Bolsa de Valores Nasdaq</h1>
+  </header>
+  <div id="interface" class="log-container">
+    <!-- Componente de Abas -->
+    <div class="tabs">
+      <div class="tab"><a href="#" data-tab="precoUnico" class="active">Obter Preço Único</a></div>
+      <div class="tab"><a href="#" data-tab="compararPreco">Comparar Preços</a></div>
     </div>
-    <hr class="p-50" />
-    <div id="testui">
-      <h2 class="text-align-left">Front-End:</h2>
-      <h3>Get single price and total likes</h3>
-      <form id="testForm2" class="border">
-        <input type="text" name="stock" placeholder="GOOG" required="" />
-        <input type="checkbox" name="like" value="true" /> Like?
-        <br />
-        <button type="submit">Get Price!</button>
+    <!-- Conteúdo das Abas -->
+    <div id="precoUnico" class="tab-content active">
+      <h2 class="fs-title">Obter preço único e total de curtidas</h2>
+      <form id="formUnico" class="border">
+        <input type="text" name="stock" placeholder="Digite o símbolo da ação, ex: GOOG" required>
+        <div class="checkbox">
+          <input type="checkbox" id="like" name="like" value="true">
+          <label for="like">Curtir?</label>
+
+        </div>
+        <button type="submit" class="action-button">Consultar Preço</button>
       </form>
-      <h3>Compare and get relative likes</h3>
-      <form id="testForm" class="border">
-        <input type="text" name="stock" placeholder="GOOG" required="" />
-        <input type="text" name="stock" placeholder="MSFT" required="" />
-        <input type="checkbox" name="like" value="true" /> Like both?
-        <br />
-        <button type="submit">Get Price!</button>
-      </form>
-      <code id="jsonResult"></code>
     </div>
-    <hr class="m-50 mt-200" />
-    <script src="/public/script.js"></script>
-  </body>
+    <div id="compararPreco" class="tab-content">
+      <h2 class="fs-title">Comparar e obter curtidas relativas</h2>
+      <form id="formComparacao" class="border">
+        <input type="text" name="stock1" placeholder="Primeiro símbolo, ex: GOOG" required>
+        <input type="text" name="stock2" placeholder="Segundo símbolo, ex: MSFT" required>
+        <div class="checkbox-container">
+          <input type="checkbox" id="likeBoth" name="like" value="true">
+          <label for="likeBoth">Curtir ambos?</label>
+
+        </div>
+        <button type="submit" class="action-button">Consultar Preço</button>
+      </form>
+    </div>
+    <hr class="dotted-line">
+    <ul id="resultadoJson" class="log-container">
+      <!-- Aqui serão exibidos os resultados formatados -->
+    </ul>
+  </div>
+  <footer class="cute-footer">
+    <p>
+      Desenvolvido 
+      <a href="https://github.com/samanthasilva/FCC-Exercise-tracker" target="_blank" class="heart-link">❤</a>
+      por Samantha Silva
+    </p>
+  </footer>
+  <!-- Scripts -->
+  <script src="/public/tabs.js"></script>
+  <script src="/public/script.js"></script>
+</body>
 </html>
