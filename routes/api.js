@@ -14,8 +14,6 @@ const StockModel = mongoose.model("Stock", StockSchema);
 const anonymize = (...args) => import('ip-anonymize').then(({default: anonymize}) => anonymize(...args));
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
-
-
 async function fetchStock(stock) {
   const URI = `https://stock-price-checker-proxy.freecodecamp.rocks/v1/stock/${ stock }/quote`;
   console.log(URI);
@@ -59,9 +57,6 @@ async function saveStock(stock, like, ip) {
 }
 
 
-
-/*------------------------------------*/
-/* main driver */
 module.exports = function (app) {
 
   app.route('/api/stock-prices')
@@ -70,9 +65,7 @@ module.exports = function (app) {
       // console.log("From req.body: ",stock, like);
       const ip = anonymize(req.ip, 16, 16);
 
-      /* two symbols query */
       if (Array.isArray(stock)) {
-        /* Compare likes between two stock symbols */
         let stockData = [];
         const { symbol, latestPrice } = await fetchStock(stock[0]);
         const { symbol: symbolx, latestPrice: latestPricex } = await fetchStock(stock[1]);
@@ -108,7 +101,6 @@ module.exports = function (app) {
         return;
       }
 
-      /* single or none stock symbol query */
       try {
         const { symbol, latestPrice } = await fetchStock(stock);
         // console.log("stock:", stock, " Symbol: ", symbol, " Price: ", latestPrice);
@@ -124,13 +116,11 @@ module.exports = function (app) {
           return;
         }
 
-        /* valid data? let's save */
         try {
           const aStockData = await saveStock(symbol, like, req.ip);
 
           console.log("Stock Data: ", symbol, latestPrice);
 
-          /* return GET */
           res.json({
             stockData: {
               stock : symbol.toString(),
