@@ -1,8 +1,6 @@
-// Função para formatar e exibir os dados da API
 function formatarResultado(dados) {
-  console.log('Dados recebidos da API:', dados); // Log para depuração
+  console.log('Dados recebidos da API:', dados); 
   if (Array.isArray(dados.stockData)) {
-    // Caso de comparação de duas ações
     return dados.stockData.map(stock => `
       <div class="resultado">
         <h3>${stock.stock}</h3>
@@ -11,7 +9,6 @@ function formatarResultado(dados) {
       </div>
     `).join('');
   } else if (dados.stockData) {
-    // Caso de uma única ação
     const { stock, price, likes } = dados.stockData;
     return `
       <div class="resultado">
@@ -21,12 +18,10 @@ function formatarResultado(dados) {
       </div>
     `;
   } else {
-    // Caso de erro ou dados inválidos
     return `<p>Não foi possível obter os dados da ação. Verifique o símbolo e tente novamente.</p>`;
   }
 }
 
-// Atualiza o elemento HTML para exibir os dados formatados
 function exibirResultado(dados, elementoResultado) {
   if (elementoResultado) {
     elementoResultado.innerHTML = formatarResultado(dados);
@@ -35,16 +30,13 @@ function exibirResultado(dados, elementoResultado) {
   }
 }
 
-// Função para alternar entre abas
 function alternarAba(aba) {
   const abas = document.querySelectorAll('.tab-content');
   abas.forEach(tab => tab.classList.remove('active'));
   document.getElementById(aba).classList.add('active');
-  // Limpar o resultado ao trocar de aba
   document.querySelector('.resultado').innerHTML = '';
 }
 
-// Evento para alternância das abas
 document.querySelectorAll('.tabs .tab a').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -55,7 +47,6 @@ document.querySelectorAll('.tabs .tab a').forEach(link => {
   });
 });
 
-// Evento para o formulário de consulta de uma única ação
 document.getElementById('formUnico').addEventListener('submit', e => {
   e.preventDefault();
   const stock = e.target.querySelector('input[name="stock"]').value;
@@ -71,7 +62,6 @@ document.getElementById('formUnico').addEventListener('submit', e => {
     });
 });
 
-// Evento para o formulário de comparação de duas ações
 document.getElementById('formComparacao').addEventListener('submit', e => {
   e.preventDefault();
   const stock1 = e.target.querySelector('input[name="stock1"]').value;
@@ -89,10 +79,9 @@ document.getElementById('formComparacao').addEventListener('submit', e => {
 });
 function exibirResultado(data) {
   const resultadoDiv = document.getElementById('resultadoJson');
-  resultadoDiv.innerHTML = ''; // Limpa os resultados anteriores
+  resultadoDiv.innerHTML = ''; 
 
   if (Array.isArray(data.stockData)) {
-      // Caso de comparação de duas ações
       data.stockData.forEach(stock => {
           const li = document.createElement('li');
           li.innerHTML = `
@@ -103,7 +92,6 @@ function exibirResultado(data) {
           resultadoDiv.appendChild(li);
       });
   } else if (data.stockData) {
-      // Caso de uma única ação
       const li = document.createElement('li');
       li.innerHTML = `
           <h3>${data.stockData.stock}</h3>
