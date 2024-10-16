@@ -6,7 +6,6 @@ const server = require('../server');
 chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
-    /* GET request to /api/stock-prices/ */
     suite('GET /api/stock-prices/', function() {
         test('1 stock', function(done) {
             chai.request(server)
